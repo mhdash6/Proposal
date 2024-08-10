@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+:root {
+  --font-family: "Poppins", sans-serif;
+  --background-color: #3B86A5;
+  --wrapper-bg-color: #E6B8DF;
+  --envelope-color: #EDBC9B ;
+  --letter-color: #fff;
+  --heart-color: red;
+  --text-color: #333;
+  --outer-envelope-color: #E6B8DF;
+}
+
+* {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background-color);
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10%;
+  background: var(--wrapper-bg-color);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.envelope {
+  position: relative;
+  width: 425px;
+  height: 230px;
+}
+
+.envelope::before,
+.envelope::after {
+  position: absolute;
+  content: "";
+  z-index: 4;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope::before {
+  top: 0;
+  border-top: 130px solid var(--envelope-color);
+  border-right: 212px solid transparent;
+  border-left: 212px solid transparent;
+  transform-origin: top;
+}
+
+.wrapper.open .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope::after {
+  border-top: 130px solid transparent;
+  border-right: 212px solid var(--outer-envelope-color);
+  border-bottom: 100px solid var(--outer-envelope-color);
+  border-left: 212px solid var(--outer-envelope-color);
+}
+
+.letter {
+  position: absolute;
+  width: 54%;
+  height: 80%;
+  background: var(--letter-color);
+  padding: 20px 10px;
+  right: 20%;
+  bottom: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 1s ease-in-out;
+  z-index: 2;
+}
+
+.wrapper.open .letter {
+  bottom: 100px;
+  transform: scale(1.5) translateY(calc(-2rem - 2vh));
+  transition-delay: 1s;
+}
+
+.text {
+  color: var(--text-color);
+  font-size: clamp(12px, 2vw, 14px);
+  text-align: center;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--heart-color);
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transform: translate(-85%, -60%) rotate(45deg);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 1s;
+  transform-origin: bottom;
+}
+
+.wrapper.open .heart {
+  transform: translate(-20%, -40%) rotate(230deg);
+  transition-delay: 0.4s;
+}
+
+.heart::before,
+.heart::after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -7.5px;
+}
+
+.heart::after {
+  right: 7.5px;
+}
+
+
+
